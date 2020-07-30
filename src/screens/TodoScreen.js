@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {observer, inject} from 'mobx-react';
 
-export const TodoScreen = () => {
+const TodoScreen = ({todoStore}) => {
   return (
     <View style={styles.container}>
       <Text>Todo Screen</Text>
@@ -16,3 +17,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default inject(({todoStore}) => ({todoStore}))(observer(TodoScreen));
