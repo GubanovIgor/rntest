@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {headerSettings} from './navigationOptions';
 
-import {TodoScreen} from '../screens/TodoScreen';
+import TodoScreen from '../screens/TodoScreen';
 
 const Todo = createStackNavigator();
 

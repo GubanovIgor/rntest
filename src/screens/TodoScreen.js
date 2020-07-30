@@ -1,18 +1,13 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {observer, inject} from 'mobx-react';
+import {TodoList} from '../components/TodoList';
 
-export const TodoScreen = () => {
-  return (
-    <View style={styles.container}>
-      <Text>Todo Screen</Text>
-    </View>
-  );
+const TodoScreen = ({todoStore}) => {
+  useEffect(() => {
+    todoStore.getTodos();
+  }, [todoStore]);
+
+  return <TodoList todos={todoStore.todos} />;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default inject(({todoStore}) => ({todoStore}))(observer(TodoScreen));
