@@ -7,7 +7,13 @@ const TodoScreen = ({todoStore}) => {
     todoStore.getTodos();
   }, [todoStore]);
 
-  return <TodoList todos={todoStore.todos} />;
+  const todoDeleteHandler = (todoId) => {
+    todoStore.deleteTodo(todoId);
+  };
+
+  return (
+    <TodoList todos={todoStore.todos} todoDeleteHandler={todoDeleteHandler} />
+  );
 };
 
 export default inject(({todoStore}) => ({todoStore}))(observer(TodoScreen));

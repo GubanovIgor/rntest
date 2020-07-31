@@ -15,4 +15,17 @@ export default class TodoStore {
     const todos = await res.json();
     this.todos = todos;
   }
+
+  @action
+  async deleteTodo(todoId) {
+    await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const newTodos = await JSON.parse(JSON.stringify(this.todos));
+    this.todos = newTodos.filter((el) => el.id !== todoId);
+  }
 }

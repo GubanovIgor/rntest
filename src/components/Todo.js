@@ -2,8 +2,8 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Swipeable} from 'react-native-gesture-handler';
 
-export const Todo = ({todo}) => {
-  const {title, completed} = todo;
+export const Todo = ({todo, todoDeleteHandler}) => {
+  const {title, completed, id} = todo;
 
   const LeftAction = () => {
     return (
@@ -16,7 +16,7 @@ export const Todo = ({todo}) => {
   return (
     <Swipeable
       renderLeftActions={LeftAction}
-      onSwipeableLeftOpen={() => console.log('it works')}>
+      onSwipeableLeftOpen={() => todoDeleteHandler(id)}>
       <View style={styles(completed).container}>
         <Text style={styles().text}>{title}</Text>
       </View>
@@ -39,6 +39,8 @@ const styles = (completed) =>
       fontSize: 18,
     },
     leftAction: {
+      justifyContent: 'center',
+
       backgroundColor: '#ff9191',
       borderRadius: 5,
 
