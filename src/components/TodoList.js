@@ -3,13 +3,15 @@ import {StyleSheet, FlatList} from 'react-native';
 
 import {Todo} from './Todo';
 
-export const TodoList = ({todos}) => {
+export const TodoList = ({todos, todoDeleteHandler}) => {
   return (
     <FlatList
       contentContainerStyle={styles.wrapper}
       data={todos}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={({item}) => <Todo todo={item} />}
+      renderItem={({item}) => (
+        <Todo todo={item} todoDeleteHandler={todoDeleteHandler} />
+      )}
     />
   );
 };
