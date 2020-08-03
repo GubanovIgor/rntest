@@ -1,22 +1,36 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItem,
+  DrawerItemList,
+} from '@react-navigation/drawer';
 import {HomeNavigator} from './HomeNavigator';
-import {TodoNavigator} from './TodoNavigator';
 
 const Drawer = createDrawerNavigator();
 
-export const DrawerNavigator = () => {
+function CustomDrawerContent(props) {
   return (
-    <Drawer.Navigator>
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="TodoModal"
+        onPress={() => props.navigation.navigate('TodoModal')}
+      />
+    </DrawerContentScrollView>
+  );
+}
+
+export const DrawerNavigator = ({navigation}) => {
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => (
+        <CustomDrawerContent {...props} navigation={navigation} />
+      )}>
       <Drawer.Screen
         name="HomeScreen"
         component={HomeNavigator}
         options={{title: 'Home'}}
-      />
-      <Drawer.Screen
-        name="TodoScreen"
-        component={TodoNavigator}
-        options={{title: 'Todos'}}
       />
     </Drawer.Navigator>
   );

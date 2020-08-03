@@ -3,7 +3,7 @@ import {observer, inject} from 'mobx-react';
 import {ActivityIndicator, View, StyleSheet} from 'react-native';
 import {TodoList} from '../components/TodoList';
 
-const TodoScreen = ({todoStore}) => {
+const TodoModal = ({todoStore}) => {
   useEffect(() => {
     todoStore.getTodos();
   }, [todoStore]);
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default inject(({todoStore}) => ({todoStore}))(observer(TodoScreen));
+export default inject(({todoStore}) => ({todoStore}))(observer(TodoModal));
